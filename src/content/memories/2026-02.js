@@ -52,7 +52,7 @@ export default {
 
       `Then the rain. I still remember how hard it came down on the way home — it was unbelievable. Thank You, Lord, that she made it home safe that night, and that I did too.`,
 
-      `Twenty-something Valentine's Days of it meaning nothing to me, and then this one. You did not just show up on the fourteenth of February. You made it the first one I will actually remember.`,
+      `Twenty-two Valentine's Days of it meaning nothing to me, and then this one. You did not just show up on the fourteenth of February. You made it the first one I will actually remember.`,
     ],
 
     closing: 'Yours, and grateful,',
