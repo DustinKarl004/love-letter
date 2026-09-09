@@ -29,7 +29,7 @@ export default {
     ambient: 'clouds',
     colors: {
       bg: '#0C1A1E',
-      bgGlow: '#1B4348',
+      bgGlow: '#265E64',
       paper: '#FFFCF4',
       paperEdge: '#EFE6D2',
       ink: '#23343A',
@@ -85,7 +85,7 @@ export default {
       },
       {
         src: '/photos/2026-04/04-chess-and-scramble.webp',
-        caption: 'Chess and Scramble',
+        caption: 'Chess, Scramble, and other games',
       },
     ],
   },

@@ -184,6 +184,23 @@ video {
   }
 }
 
+/* Sea spray: the sharp layer that rides along with the clouds. */
+.spray {
+  position: absolute;
+  left: -10vw;
+  border-radius: 50%;
+  animation-name: cloud-drift, twinkle;
+  animation-timing-function: linear, ease-in-out;
+  animation-iteration-count: infinite, infinite;
+  will-change: transform, opacity;
+}
+
+.spray.is-reverse {
+  left: auto;
+  right: -10vw;
+  animation-name: cloud-drift-reverse, twinkle;
+}
+
 @keyframes cloud-bob {
   0%,
   100% {

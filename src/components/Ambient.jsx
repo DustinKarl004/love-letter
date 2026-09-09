@@ -109,8 +109,26 @@ function Clouds({ count }) {
         reverse: i % 3 === 0,
         bob: 10 + Math.random() * 26,
         tint: CLOUD_TINTS[i % CLOUD_TINTS.length],
-        opacity: 0.07 + Math.random() * 0.14,
-        blur: 16 + Math.random() * 22,
+        opacity: 0.16 + Math.random() * 0.22,
+        blur: 14 + Math.random() * 18,
+      })),
+    [count]
+  )
+
+  // Clouds alone are diffuse, so a sharp layer rides along with them.
+  const spray = useMemo(
+    () =>
+      Array.from({ length: count * 2 }, (_, i) => ({
+        id: i,
+        top: Math.random() * 100,
+        size: 1.6 + Math.random() * 3,
+        duration: 20 + Math.random() * 26,
+        delay: -Math.random() * 46,
+        reverse: i % 3 === 0,
+        bob: 14 + Math.random() * 34,
+        twinkle: 2.6 + Math.random() * 3.6,
+        tint: i % 4 === 0 ? '#F0C98A' : '#9FE6DC',
+        opacity: 0.45 + Math.random() * 0.5,
       })),
     [count]
   )
@@ -131,6 +149,24 @@ function Clouds({ count }) {
             animationDuration: `${c.duration}s, ${c.duration / 3}s`,
             animationDelay: `${c.delay}s, ${c.delay}s`,
             '--bob': `${c.bob}px`,
+          }}
+        />
+      ))}
+
+      {spray.map((d) => (
+        <span
+          key={`s${d.id}`}
+          className={`spray ${d.reverse ? 'is-reverse' : ''}`}
+          style={{
+            top: `${d.top}%`,
+            width: `${d.size}px`,
+            height: `${d.size}px`,
+            background: d.tint,
+            boxShadow: `0 0 ${d.size * 3}px ${d.tint}`,
+            opacity: d.opacity,
+            animationDuration: `${d.duration}s, ${d.twinkle}s`,
+            animationDelay: `${d.delay}s, ${d.delay}s`,
+            '--bob': `${d.bob}px`,
           }}
         />
       ))}
@@ -377,6 +413,6 @@ export default function Ambient({ kind = 'leaves', count = 26 }) {
   if (kind === 'stars') return <Stars count={count * 3} />
   if (kind === 'petals') return <Petals count={Math.round(count * 1.3)} />
   if (kind === 'embers') return <Embers count={Math.round(count * 1.8)} />
-  if (kind === 'clouds') return <Clouds count={Math.round(count * 0.7)} />
+  if (kind === 'clouds') return <Clouds count={Math.round(count * 1.05)} />
   return <Leaves count={count} />
 }
