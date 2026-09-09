@@ -23,7 +23,7 @@ export default function Index({ onSelect }) {
   }, [theme])
 
   useEffect(() => {
-    document.title = `${home.title} — ${home.eyebrow}`
+    document.title = `${home.title} — for ${home.to}`
   }, [])
 
   return (
@@ -32,11 +32,22 @@ export default function Index({ onSelect }) {
 
       <main className="index">
         <header className="index-head">
-          <p className="index-eyebrow">{home.eyebrow}</p>
+          <p className="index-dedication">
+            <span className="index-dedication-rule" aria-hidden="true" />
+            <span className="index-dedication-text">for {home.to}</span>
+            <span className="index-dedication-rule" aria-hidden="true" />
+          </p>
           <h1 className="index-title">{home.title}</h1>
           <p className="index-subtitle">{home.subtitle}</p>
           <span className="index-rule" />
         </header>
+
+        {home.verse && (
+          <blockquote className="index-verse">
+            <p className="index-verse-text">{home.verse.text}</p>
+            <cite className="index-verse-ref">{home.verse.reference}</cite>
+          </blockquote>
+        )}
 
         {groups.map(([kind, items]) => (
           <section className="index-group" key={kind}>

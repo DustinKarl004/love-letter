@@ -18,24 +18,24 @@ export default {
     // The day this letter is for.
     occasion: 'Friday, September 11',
     sealMark: 'D',
-    blurb: 'Thank You for the strength, and for Friday.',
+    blurb: 'You made me more confident than I have ever been.',
   },
 
   theme: {
-    name: 'early-autumn',
-    mark: '🍂',
-    ambient: 'leaves',
+    name: 'sunflower-september',
+    mark: '🌻',
+    ambient: 'sunflowers',
     colors: {
-      bg: '#20150E',
-      bgGlow: '#3A2416',
-      paper: '#FDF6EC',
-      paperEdge: '#EFE1CC',
-      ink: '#3D2B1F',
-      inkSoft: '#7A6353',
-      accent: '#C87941',
-      accentDeep: '#A64B2A',
-      seal: '#9E3B26',
-      sealHighlight: '#C75B41',
+      bg: '#141A10',
+      bgGlow: '#33421F',
+      paper: '#FFFBEF',
+      paperEdge: '#F2E6C9',
+      ink: '#33301B',
+      inkSoft: '#6F6944',
+      accent: '#E8A61C',
+      accentDeep: '#A8760C',
+      seal: '#8A6A10',
+      sealHighlight: '#C79A1E',
     },
   },
 
@@ -49,23 +49,34 @@ export default {
     greeting: 'Jaz,',
 
     paragraphs: [
-      `I am not a brave person. I overthink things, I wait longer than I should, and I talk myself out of what I actually want to do. So when something good turns up in my life, I have learned not to hand myself the credit for it.`,
+      `I have never been good at doing things on my own strength, and I have stopped pretending otherwise. But you have helped me become more confident than I have ever been, and I am so thankful for that. Being with you makes me so happy.`,
 
-      `Thank You, Lord, for letting me go out with her. I do not take it lightly, and I know it is not something I managed on my own strength.`,
+      `You give me your time, and I know what that costs you. You have spent whole days on me, travelled far out of your way for me, and been kind to me the entire time you were doing it. I notice all of it, even when I do not say so.`,
 
-      `And thank You for the time. Not only for the days themselves, but for the fact that I get any at all. Time is the one thing I cannot make more of, so I would rather say thank You for it now than assume there will always be more of it later.`,
+      `You are patient with me when I am too much. You think of other people before you think of yourself. And you have a way of making an ordinary day into something I end up remembering for months. That is not a small thing to be able to do.`,
 
-      `There are still things I cannot do on my own. I have only gotten better at knowing Who to ask.`,
+      `And I know things have not been easy for you lately. I am not going to pretend I can fix any of it, or that I always know what to say. But I want you to hear this plainly, so there is no doubt about it.`,
+
+      // The line the whole letter exists for, so it is set larger.
+      {
+        feature: true,
+        text: `I am not going anywhere. Whatever this season turns out to be, you are not carrying it by yourself.`,
+      },
+
+      `That verse at the top is not really about me. It is the thing I want you to have. You can do all things through Christ who strengthens you — and while He is doing that, I will be right here.`,
+
+      `So I am not walking into Friday relying on myself. There are still things I cannot do on my own — I have only gotten better at knowing Who to ask.`,
     ],
 
-    // Set apart from the prose, so it reads as spoken rather than written.
+    // Set apart from the prose, so it reads as spoken rather than
+    // written. Addressed to God, but about Jaz.
     prayer: {
       lines: [
-        `Lord God, I am asking now instead of waiting for Friday to come. Give me the same strength You gave me the first time, because I have not gotten any braver on my own since then.`,
+        `Lord God, thank You for Jaz. Thank You for her kindness, for her patience with me, and for the time she keeps choosing to give me. None of that was ever mine to arrange.`,
 
-        `Let me be present with her instead of stuck inside my own head. Let me listen more than I talk. Keep both of us safe on the way there and on the way home. And let the day be good — it does not have to be perfect, it just has to be good.`,
+        `Look after her, Lord. She is carrying more than she lets on — carry it with her. Keep both of us safe on the way there and on the way home. Give her rest when she is tired, and people around her who are good to her. And when she doubts herself, let her know how she is seen.`,
 
-        `And whatever comes after Friday, help me to keep trusting that You know the timing far better than I do.`,
+        `As for Friday — give me the strength to be good to her, and to listen more than I talk. Let the day be good; it does not have to be perfect. And whatever comes after it, help me to keep trusting that You know the timing far better than I do.`,
       ],
       amen: `In Jesus' name, amen.`,
     },

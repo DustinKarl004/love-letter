@@ -5,10 +5,15 @@
 // ─────────────────────────────────────────────────────────────
 
 export default {
-  eyebrow: 'For Jaz',
+  to: 'Jaz',
   title: 'Love Letters',
   subtitle: 'one for every month',
   hint: 'pick a month',
+
+  verse: {
+    text: 'Love is patient, love is kind. It bears all things, believes all things, hopes all things, endures all things.',
+    reference: '1 Corinthians 13:4–7',
+  },
 
   // Sunflowers: gold on a deep green field.
   theme: {

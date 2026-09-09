@@ -20,11 +20,18 @@ export default function Letter({ letter, meta }) {
 
       <p className="letter-greeting">{letter.greeting}</p>
 
-      {(letter.paragraphs || []).map((text, i) => (
-        <p className="letter-paragraph" key={i}>
-          {text}
-        </p>
-      ))}
+      {(letter.paragraphs || []).map((para, i) => {
+        const text = typeof para === 'string' ? para : para.text
+        const feature = typeof para === 'object' && para.feature
+        return (
+          <p
+            className={feature ? 'letter-feature' : 'letter-paragraph'}
+            key={i}
+          >
+            {text}
+          </p>
+        )
+      })}
 
       {/* Optional. For a month with more than one day worth writing up,
           each gets its own dated section. */}
@@ -60,6 +67,23 @@ export default function Letter({ letter, meta }) {
           )}
         </aside>
       )}
+
+      <span className="letter-ornament" aria-hidden="true">
+        <svg viewBox="0 0 40 40">
+          {Array.from({ length: 12 }, (_, i) => (
+            <ellipse
+              key={i}
+              cx="20"
+              cy="9.5"
+              rx="2.6"
+              ry="7.6"
+              fill="currentColor"
+              transform={`rotate(${30 * i} 20 20)`}
+            />
+          ))}
+          <circle cx="20" cy="20" r="5.4" className="letter-ornament-eye" />
+        </svg>
+      </span>
 
       <p className="letter-closing">{letter.closing}</p>
       <p className="letter-signature">{meta.from}</p>
