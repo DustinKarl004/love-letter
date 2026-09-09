@@ -30,6 +30,8 @@ export default function App() {
 
   const entry = resolve(path) || defaultEntry
   const { meta, theme, letter, reasons, gallery, signoff, empty } = entry
+  // Each month's own little glyph, used by the placeholder states.
+  const mark = theme.mark || '✦'
 
   useEffect(() => {
     function onHashChange() {
@@ -82,12 +84,12 @@ export default function App() {
       ) : (
         <main className="reading">
           {empty ? (
-            <EmptyMonth empty={empty} meta={meta} onSelect={go} />
+            <EmptyMonth empty={empty} meta={meta} mark={mark} onSelect={go} />
           ) : (
             <>
               <Letter letter={letter} meta={meta} />
-              <Reasons key={`${key}-reasons`} reasons={reasons} />
-              <Gallery key={`${key}-gallery`} gallery={gallery} />
+              <Reasons key={`${key}-reasons`} reasons={reasons} mark={mark} />
+              <Gallery key={`${key}-gallery`} gallery={gallery} mark={mark} />
 
               {signoff && (
                 <footer className="signoff">

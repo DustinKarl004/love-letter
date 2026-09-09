@@ -1,9 +1,9 @@
 // Shown in place of a letter when a month has not been written yet.
-export default function EmptyMonth({ empty, meta, onSelect }) {
+export default function EmptyMonth({ empty, meta, mark = '✦', onSelect }) {
   return (
     <article className="empty-month">
       <span className="empty-month-mark" aria-hidden="true">
-        🍂
+        {mark}
       </span>
 
       <p className="empty-month-date">

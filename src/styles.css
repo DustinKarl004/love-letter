@@ -148,6 +148,52 @@ video {
   }
 }
 
+/* Clouds drift across, not down — the only ambient on the horizontal
+   axis. Soft and very low contrast, so text stays readable over them. */
+.cloud {
+  position: absolute;
+  left: -30vw;
+  border-radius: 50%;
+  animation-name: cloud-drift, cloud-bob;
+  animation-timing-function: linear, ease-in-out;
+  animation-iteration-count: infinite, infinite;
+  will-change: transform;
+}
+
+.cloud.is-reverse {
+  left: auto;
+  right: -30vw;
+  animation-name: cloud-drift-reverse, cloud-bob;
+}
+
+@keyframes cloud-drift {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(160vw, 0, 0);
+  }
+}
+
+@keyframes cloud-drift-reverse {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-160vw, 0, 0);
+  }
+}
+
+@keyframes cloud-bob {
+  0%,
+  100% {
+    margin-top: 0;
+  }
+  50% {
+    margin-top: var(--bob);
+  }
+}
+
 /* Embers rise instead of fall, and breathe while they climb. */
 .ember {
   position: absolute;
@@ -1282,6 +1328,30 @@ video {
   .gallery-feature .polaroid-frame {
     aspect-ratio: 4 / 3;
     height: auto;
+  }
+}
+
+/* ── Gallery layout: 'natural' ─────────────────────────────────
+   Two columns, every frame at the photo's own aspect ratio, so a month
+   mixing portrait and landscape shots crops none of them. Cards end up
+   different heights on purpose. Opt-in per month. */
+
+.gallery-natural .polaroid-grid {
+  grid-template-columns: repeat(2, 1fr);
+  align-items: start;
+}
+
+.gallery-natural .polaroid-frame {
+  aspect-ratio: var(--ratio, 4 / 5);
+}
+
+.gallery-natural .polaroid-frame img {
+  object-position: center;
+}
+
+@media (max-width: 30rem) {
+  .gallery-natural .polaroid-grid {
+    grid-template-columns: 1fr;
   }
 }
 

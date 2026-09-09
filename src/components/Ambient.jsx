@@ -90,6 +90,54 @@ function Petal({ variant }) {
 
 // March: warm motes lifting off the ground at dusk. Every other month
 // falls downward, so rising is what makes this one read differently.
+// April: summer haze drifting sideways. The other months all move on
+// the vertical axis, so horizontal drift is what sets this one apart.
+const CLOUD_TINTS = ['#2FB6A8', '#7FD4CB', '#E0743F', '#F0C98A', '#4FA8A0', '#FFF3DC']
+
+function Clouds({ count }) {
+  const drifts = useMemo(
+    () =>
+      Array.from({ length: count }, (_, i) => ({
+        id: i,
+        top: Math.random() * 100,
+        // Wide, soft shapes rather than points.
+        width: 90 + Math.random() * 190,
+        height: 26 + Math.random() * 52,
+        duration: 44 + Math.random() * 56,
+        delay: -Math.random() * 100,
+        // Alternate direction so the sky is not all sliding one way.
+        reverse: i % 3 === 0,
+        bob: 10 + Math.random() * 26,
+        tint: CLOUD_TINTS[i % CLOUD_TINTS.length],
+        opacity: 0.07 + Math.random() * 0.14,
+        blur: 16 + Math.random() * 22,
+      })),
+    [count]
+  )
+
+  return (
+    <div className="ambient" aria-hidden="true">
+      {drifts.map((c) => (
+        <span
+          key={c.id}
+          className={`cloud ${c.reverse ? 'is-reverse' : ''}`}
+          style={{
+            top: `${c.top}%`,
+            width: `${c.width}px`,
+            height: `${c.height}px`,
+            background: c.tint,
+            filter: `blur(${c.blur}px)`,
+            opacity: c.opacity,
+            animationDuration: `${c.duration}s, ${c.duration / 3}s`,
+            animationDelay: `${c.delay}s, ${c.delay}s`,
+            '--bob': `${c.bob}px`,
+          }}
+        />
+      ))}
+    </div>
+  )
+}
+
 const EMBER_TINTS = ['#F0B457', '#F0885A', '#FFD9A0', '#E86A4B', '#F5C77E', '#C2492F']
 
 function Embers({ count }) {
@@ -329,5 +377,6 @@ export default function Ambient({ kind = 'leaves', count = 26 }) {
   if (kind === 'stars') return <Stars count={count * 3} />
   if (kind === 'petals') return <Petals count={Math.round(count * 1.3)} />
   if (kind === 'embers') return <Embers count={Math.round(count * 1.8)} />
+  if (kind === 'clouds') return <Clouds count={Math.round(count * 0.7)} />
   return <Leaves count={count} />
 }

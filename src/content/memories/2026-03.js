@@ -28,6 +28,7 @@ export default {
   // warm motes rising instead of anything falling.
   theme: {
     name: 'sunset-march',
+    mark: '☀️',
     ambient: 'embers',
     colors: {
       bg: '#1E0F17',

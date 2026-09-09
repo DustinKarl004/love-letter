@@ -1,6 +1,6 @@
 import useReveal from '../hooks/useReveal'
 
-export default function Reasons({ reasons }) {
+export default function Reasons({ reasons, mark = '✦' }) {
   const [ref, shown] = useReveal({ threshold: 0.15 })
 
   if (!reasons?.items?.length) return null
@@ -22,7 +22,7 @@ export default function Reasons({ reasons }) {
             style={{ transitionDelay: `${i * 130}ms` }}
           >
             <span className="reason-mark" aria-hidden="true">
-              🍂
+              {mark}
             </span>
             <span className="reason-text">{item}</span>
           </li>

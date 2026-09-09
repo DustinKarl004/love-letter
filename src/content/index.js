@@ -13,6 +13,7 @@
 import memoryJan2026 from './memories/2026-01.js'
 import memoryFeb2026 from './memories/2026-02.js'
 import memoryMar2026 from './memories/2026-03.js'
+import memoryApr2026 from './memories/2026-04.js'
 import memorySep2026 from './memories/2026-09.js'
 
 import letterSep2026 from './letters/2026-09.js'
@@ -22,6 +23,7 @@ export const memories = [
   memoryJan2026,
   memoryFeb2026,
   memoryMar2026,
+  memoryApr2026,
   memorySep2026,
 ]
 export const letters = [letterSep2026]

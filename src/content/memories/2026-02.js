@@ -23,6 +23,7 @@ export default {
   // February: deep wine and rose, with petals instead of leaves.
   theme: {
     name: 'rose-february',
+    mark: '🌸',
     ambient: 'petals',
     colors: {
       bg: '#1A0B12',

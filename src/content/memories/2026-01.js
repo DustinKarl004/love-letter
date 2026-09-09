@@ -21,6 +21,7 @@ export default {
   // New year, midnight and gold — the mall still had its lights up.
   theme: {
     name: 'first-light',
+    mark: '✦',
     ambient: 'stars',
     colors: {
       bg: '#0E0B1A',

@@ -4,7 +4,7 @@ import useReveal from '../hooks/useReveal'
 // Fixed tilts, so cards don't re-shuffle on every render.
 const TILTS = [-3.2, 2.4, -1.6, 3.1, -2.6, 1.8, -3.8, 2.1]
 
-function Polaroid({ photo, index, onOpen }) {
+function Polaroid({ photo, index, mark, onOpen }) {
   const [failed, setFailed] = useState(false)
   // Published as --ratio; only the inline layout consumes it, so the
   // existing months keep their fixed frames.
@@ -32,7 +32,7 @@ function Polaroid({ photo, index, onOpen }) {
       >
         {failed ? (
           <span className="polaroid-empty">
-            <span className="polaroid-empty-mark">🍂</span>
+            <span className="polaroid-empty-mark">{mark}</span>
             <span className="polaroid-empty-text">
               drop a photo at
               <code>{photo.src}</code>
@@ -81,7 +81,7 @@ function Lightbox({ photo, onClose }) {
   )
 }
 
-export default function Gallery({ gallery, inline = false }) {
+export default function Gallery({ gallery, inline = false, mark = '✦' }) {
   const [ref, shown] = useReveal({ threshold: 0.1 })
   const [active, setActive] = useState(null)
 
@@ -105,7 +105,13 @@ export default function Gallery({ gallery, inline = false }) {
 
       <div className="polaroid-grid">
         {gallery.photos.map((photo, i) => (
-          <Polaroid key={photo.src} photo={photo} index={i} onOpen={setActive} />
+          <Polaroid
+            key={photo.src}
+            photo={photo}
+            index={i}
+            mark={mark}
+            onOpen={setActive}
+          />
         ))}
       </div>
 

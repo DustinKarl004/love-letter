@@ -23,6 +23,7 @@ export default {
 
   theme: {
     name: 'early-autumn',
+    mark: '🍂',
     ambient: 'leaves',
     colors: {
       bg: '#20150E',
