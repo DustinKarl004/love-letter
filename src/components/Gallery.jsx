@@ -6,6 +6,14 @@ const TILTS = [-3.2, 2.4, -1.6, 3.1, -2.6, 1.8, -3.8, 2.1]
 
 function Polaroid({ photo, index, onOpen }) {
   const [failed, setFailed] = useState(false)
+  // Published as --ratio; only the inline layout consumes it, so the
+  // existing months keep their fixed frames.
+  const [ratio, setRatio] = useState(null)
+
+  function handleLoad(e) {
+    const { naturalWidth: w, naturalHeight: h } = e.currentTarget
+    if (w && h) setRatio(Math.min(Math.max(w / h, 0.7), 1.5))
+  }
 
   return (
     <figure
@@ -18,6 +26,7 @@ function Polaroid({ photo, index, onOpen }) {
       <button
         type="button"
         className="polaroid-frame"
+        style={ratio ? { '--ratio': ratio } : undefined}
         onClick={() => !failed && onOpen(photo)}
         aria-label={photo.caption || `Photo ${index + 1}`}
       >
@@ -34,6 +43,7 @@ function Polaroid({ photo, index, onOpen }) {
             src={photo.src}
             alt={photo.caption || ''}
             loading="lazy"
+            onLoad={handleLoad}
             onError={() => setFailed(true)}
           />
         )}
@@ -71,7 +81,7 @@ function Lightbox({ photo, onClose }) {
   )
 }
 
-export default function Gallery({ gallery }) {
+export default function Gallery({ gallery, inline = false }) {
   const [ref, shown] = useReveal({ threshold: 0.1 })
   const [active, setActive] = useState(null)
 
@@ -79,11 +89,19 @@ export default function Gallery({ gallery }) {
 
   return (
     <section
-      className={`gallery ${shown ? 'is-shown' : ''}`}
+      className={[
+        'gallery',
+        inline ? 'gallery-inline' : '',
+        // Opt-in per month, so one month's layout never changes another's.
+        gallery.layout ? `gallery-${gallery.layout}` : '',
+        shown ? 'is-shown' : '',
+      ]
+        .filter(Boolean)
+        .join(' ')}
       ref={ref}
-      aria-label={gallery.title}
+      aria-label={gallery.title || 'Photos'}
     >
-      <h2 className="section-title">{gallery.title}</h2>
+      {gallery.title && <h2 className="section-title">{gallery.title}</h2>}
 
       <div className="polaroid-grid">
         {gallery.photos.map((photo, i) => (

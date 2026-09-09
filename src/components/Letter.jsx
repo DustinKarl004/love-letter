@@ -1,3 +1,5 @@
+import Gallery from './Gallery'
+
 export default function Letter({ letter, meta }) {
   return (
     <article className="letter" aria-label="Your letter">
@@ -18,10 +20,34 @@ export default function Letter({ letter, meta }) {
 
       <p className="letter-greeting">{letter.greeting}</p>
 
-      {letter.paragraphs.map((text, i) => (
+      {(letter.paragraphs || []).map((text, i) => (
         <p className="letter-paragraph" key={i}>
           {text}
         </p>
+      ))}
+
+      {/* Optional. For a month with more than one day worth writing up,
+          each gets its own dated section. */}
+      {letter.sections?.map((section, i) => (
+        <section className="letter-section" key={i}>
+          <header className="letter-section-head">
+            <span className="letter-section-date">{section.date}</span>
+            {section.title && (
+              <h2 className="letter-section-title">{section.title}</h2>
+            )}
+          </header>
+
+          {section.paragraphs.map((text, j) => (
+            <p className="letter-paragraph" key={j}>
+              {text}
+            </p>
+          ))}
+
+          {/* A day's own photos, laid on the page under its words. */}
+          {section.photos?.length > 0 && (
+            <Gallery gallery={{ photos: section.photos }} inline />
+          )}
+        </section>
       ))}
 
       {letter.prayer && (

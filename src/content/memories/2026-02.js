@@ -63,6 +63,8 @@ export default {
 
   gallery: {
     title: 'February 14, in pictures',
+    // Two columns: the first two run wide, the second two sit inset.
+    layout: 'feature',
     photos: [
       {
         src: '/photos/2026-02/01-kwentuhan.webp',
@@ -70,7 +72,7 @@ export default {
       },
       {
         src: '/photos/2026-02/02-rain-outside.webp',
-        caption: 'the rain starting outside',
+        caption: 'you were so cute here',
       },
       {
         src: '/photos/2026-02/03-the-lights.webp',

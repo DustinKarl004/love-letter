@@ -88,6 +88,53 @@ function Petal({ variant }) {
   )
 }
 
+// March: warm motes lifting off the ground at dusk. Every other month
+// falls downward, so rising is what makes this one read differently.
+const EMBER_TINTS = ['#F0B457', '#F0885A', '#FFD9A0', '#E86A4B', '#F5C77E', '#C2492F']
+
+function Embers({ count }) {
+  const motes = useMemo(
+    () =>
+      Array.from({ length: count }, (_, i) => ({
+        id: i,
+        left: Math.random() * 100,
+        // A few large, soft ones sit behind the small bright ones.
+        size: i % 7 === 0 ? 7 + Math.random() * 7 : 2 + Math.random() * 3.5,
+        blur: i % 7 === 0 ? 3 : 0,
+        duration: 16 + Math.random() * 20,
+        delay: -Math.random() * 36,
+        sway: (Math.random() - 0.5) * 150,
+        pulse: 2.4 + Math.random() * 3.4,
+        tint: EMBER_TINTS[i % EMBER_TINTS.length],
+        opacity: 0.35 + Math.random() * 0.5,
+      })),
+    [count]
+  )
+
+  return (
+    <div className="ambient" aria-hidden="true">
+      {motes.map((m) => (
+        <span
+          key={m.id}
+          className="ember"
+          style={{
+            left: `${m.left}%`,
+            width: `${m.size}px`,
+            height: `${m.size}px`,
+            background: m.tint,
+            filter: m.blur ? `blur(${m.blur}px)` : undefined,
+            boxShadow: `0 0 ${m.size * 2.4}px ${m.tint}`,
+            opacity: m.opacity,
+            animationDuration: `${m.duration}s, ${m.pulse}s`,
+            animationDelay: `${m.delay}s, ${m.delay}s`,
+            '--sway': `${m.sway}px`,
+          }}
+        />
+      ))}
+    </div>
+  )
+}
+
 const PETAL_TINTS = ['#E8A0B4', '#D9738C', '#F2C2CE', '#A32E4F', '#EFB0BE', '#C2506B']
 
 function Petals({ count }) {
@@ -281,5 +328,6 @@ export default function Ambient({ kind = 'leaves', count = 26 }) {
   if (reduced) return null
   if (kind === 'stars') return <Stars count={count * 3} />
   if (kind === 'petals') return <Petals count={Math.round(count * 1.3)} />
+  if (kind === 'embers') return <Embers count={Math.round(count * 1.8)} />
   return <Leaves count={count} />
 }
