@@ -7,7 +7,10 @@ export default function Nav({ memories, letters, current, onSelect }) {
     ['letter', letters],
   ].filter(([, items]) => items.length)
 
-  if (!groups.length) return null
+  // With only one page in the whole thing, the nav is just noise — the
+  // envelope already says which month it is.
+  const total = memories.length + letters.length
+  if (!groups.length || total <= 1) return null
 
   return (
     <nav className="nav" aria-label="Choose a page">

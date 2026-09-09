@@ -4,8 +4,8 @@
 //    Monthly Memory  — a month we already lived. Dates, photos.
 //    Love Letter     — about right now. No photos needed.
 //
-//  Routes:  #/memory/2026-01     #/letter/2026-09
-//  A bare  #/2026-01  still resolves to the memory, for old links.
+//  Routes:  #/letter/2026-09     (#/memory/<slug> once memories are
+//                                  unhidden again)
 //
 //  To add an entry: create the file, import it, append it below.
 // ─────────────────────────────────────────────────────────────
@@ -18,14 +18,19 @@ import memorySep2026 from './memories/2026-09.js'
 
 import letterSep2026 from './letters/2026-09.js'
 
-// Chronological, oldest first.
-export const memories = [
+// Monthly Memory is hidden for now — the monthly thing is the love
+// letter. Nothing is deleted: move any of these back into `memories`
+// below and that month reappears in the nav, the archive and its URL.
+const hiddenMemories = [
   memoryJan2026,
   memoryFeb2026,
   memoryMar2026,
   memoryApr2026,
   memorySep2026,
 ]
+
+// Chronological, oldest first.
+export const memories = []
 export const letters = [letterSep2026]
 
 export const KIND_LABEL = {
@@ -59,7 +64,7 @@ export function resolve(path) {
 
 // Which page a bare link opens. Deliberately not "the newest" — point
 // it at whichever entry is most worth landing on.
-export const DEFAULT_ROUTE = 'memory/2026-01'
+export const DEFAULT_ROUTE = 'letter/2026-09'
 
 export const defaultEntry = resolve(DEFAULT_ROUTE) || all[0]
 
