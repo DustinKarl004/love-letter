@@ -46,6 +46,94 @@ function Leaf({ variant }) {
 
 const LEAF_TINTS = ['#C87941', '#A64B2A', '#D89B54', '#8C4A2F', '#E0A860', '#B5622F']
 
+// Petal shapes for February. Three petals and, one time in four, a
+// small heart — enough to read as the month without being cloying.
+function Petal({ variant }) {
+  if (variant === 3) {
+    return (
+      <svg viewBox="0 0 32 32" aria-hidden="true">
+        <path
+          d="M16 29C16 29 3 21 3 12.5A7.5 7.5 0 0 1 16 7a7.5 7.5 0 0 1 13 5.5C29 21 16 29 16 29Z"
+          fill="currentColor"
+        />
+      </svg>
+    )
+  }
+  if (variant === 0) {
+    return (
+      <svg viewBox="0 0 32 32" aria-hidden="true">
+        <path
+          d="M16 1c9 7 11 16 0 30C5 17 7 8 16 1Z"
+          fill="currentColor"
+        />
+        <path d="M16 5c4 5 5 11 0 21" stroke="rgba(255,255,255,.28)" strokeWidth="1" fill="none" />
+      </svg>
+    )
+  }
+  if (variant === 1) {
+    return (
+      <svg viewBox="0 0 32 32" aria-hidden="true">
+        <path
+          d="M4 16C4 7 10 2 18 2c7 0 10 5 10 11 0 8-6 17-14 17C7 30 4 24 4 16Z"
+          fill="currentColor"
+        />
+      </svg>
+    )
+  }
+  return (
+    <svg viewBox="0 0 32 32" aria-hidden="true">
+      <ellipse cx="16" cy="16" rx="9" ry="13" fill="currentColor" />
+      <path d="M16 4c3 6 3 18 0 24" stroke="rgba(255,255,255,.22)" strokeWidth="1" fill="none" />
+    </svg>
+  )
+}
+
+const PETAL_TINTS = ['#E8A0B4', '#D9738C', '#F2C2CE', '#A32E4F', '#EFB0BE', '#C2506B']
+
+function Petals({ count }) {
+  const drops = useMemo(
+    () =>
+      Array.from({ length: count }, (_, i) => ({
+        id: i,
+        left: Math.random() * 100,
+        size: 10 + Math.random() * 15,
+        // Petals are lighter than leaves, so they take longer to land.
+        duration: 14 + Math.random() * 16,
+        delay: -Math.random() * 30,
+        sway: 50 + Math.random() * 90,
+        spin: Math.random() > 0.5 ? 1 : -1,
+        variant: i % 4,
+        tint: PETAL_TINTS[i % PETAL_TINTS.length],
+        opacity: 0.4 + Math.random() * 0.5,
+      })),
+    [count]
+  )
+
+  return (
+    <div className="ambient" aria-hidden="true">
+      {drops.map((d) => (
+        <span
+          key={d.id}
+          className="petal"
+          style={{
+            left: `${d.left}%`,
+            width: `${d.size}px`,
+            height: `${d.size}px`,
+            color: d.tint,
+            opacity: d.opacity,
+            animationDuration: `${d.duration}s`,
+            animationDelay: `${d.delay}s`,
+            '--sway': `${d.sway}px`,
+            '--spin': `${d.spin * 540}deg`,
+          }}
+        >
+          <Petal variant={d.variant} />
+        </span>
+      ))}
+    </div>
+  )
+}
+
 function Leaves({ count }) {
   // Positions are randomized once on mount, then handed to CSS so the
   // browser animates them off the main thread.
@@ -192,5 +280,6 @@ export default function Ambient({ kind = 'leaves', count = 26 }) {
 
   if (reduced) return null
   if (kind === 'stars') return <Stars count={count * 3} />
+  if (kind === 'petals') return <Petals count={Math.round(count * 1.3)} />
   return <Leaves count={count} />
 }

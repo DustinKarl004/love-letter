@@ -108,6 +108,46 @@ video {
   }
 }
 
+/* Petals drift wider and flutter as they turn over, so they read as
+   lighter than the leaves. */
+.petal {
+  position: absolute;
+  top: -8%;
+  display: block;
+  animation-name: petal-fall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  will-change: transform;
+}
+
+.petal svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.3));
+}
+
+@keyframes petal-fall {
+  0% {
+    transform: translate3d(0, -10vh, 0) rotate(0deg) scaleX(1);
+  }
+  25% {
+    transform: translate3d(calc(var(--sway) * 0.6), 28vh, 0)
+      rotate(calc(var(--spin) * 0.25)) scaleX(0.55);
+  }
+  50% {
+    transform: translate3d(var(--sway), 56vh, 0)
+      rotate(calc(var(--spin) * 0.5)) scaleX(1);
+  }
+  75% {
+    transform: translate3d(calc(var(--sway) * 0.3), 84vh, 0)
+      rotate(calc(var(--spin) * 0.75)) scaleX(0.6);
+  }
+  100% {
+    transform: translate3d(0, 115vh, 0) rotate(var(--spin)) scaleX(1);
+  }
+}
+
 .star {
   position: absolute;
   border-radius: 50%;

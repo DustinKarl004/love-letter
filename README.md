@@ -33,6 +33,7 @@ src/
     index.js            ← the registry: both collections + routes
     memories/
       2026-01.js        January — the day you met
+      2026-02.js        February — design only, no words yet
       2026-09.js        September — empty placeholder
     letters/
       2026-09.js        September — the love letter
@@ -52,6 +53,7 @@ src/
 public/
   photos/
     2026-01/            January's photos
+    2026-02/            empty until you have February photos
     2026-09/            empty until you have September photos
 ```
 
@@ -128,16 +130,28 @@ steal the landing page. Set it to `null` to fall back to the first entry.
 - `'leaves'` — falling autumn leaves, 6 tints, sway and spin
 - `'stars'` — three layers: fixed twinkling, slow drifting, occasional
   shooting stars
+- `'petals'` — rose petals that flutter as they turn over, plus the
+  occasional small heart
 
 Both are pure CSS off the main thread, and both go still under
 `prefers-reduced-motion`.
+
+Built and in use:
+
+| Month | bg | accent | accentDeep | ambient |
+| --- | --- | --- | --- | --- |
+| January | `#0E0B1A` | `#E0A94F` | `#B0742A` | `stars` |
+| February | `#1A0B12` | `#D9738C` | `#A32E4F` | `petals` |
+| September | `#20150E` | `#C87941` | `#A64B2A` | `leaves` |
+
+Suggestions for later months:
 
 | Month | bg | accent | accentDeep | ambient |
 | --- | --- | --- | --- | --- |
 | October | `#1A1014` | `#C2571F` | `#8A2E12` | `leaves` |
 | November | `#171310` | `#A8763F` | `#6E4522` | `leaves` |
 | December | `#0C1420` | `#B8352F` | `#0F5132` | `stars` |
-| February | `#1C0E14` | `#D96A86` | `#9E2B4A` | `leaves` |
+
 
 ## Deploying
 
