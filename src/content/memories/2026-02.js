@@ -2,8 +2,8 @@
 //  MONTHLY MEMORY · FEBRUARY 2026
 //  Valentine's Day — February 14, 2026. She came to the house.
 //
-//  Photos: drop them into public/photos/2026-02/ and add them to
-//  gallery.photos below. The section stays hidden while it is empty.
+//  Four photos, in the order the night happened:
+//  eating and kwentuhan -> the rain -> the lights before going home.
 // ─────────────────────────────────────────────────────────────
 
 export default {
@@ -61,9 +61,27 @@ export default {
 
   reasons: null,
 
-  // No photos from this day yet. Add them as:
-  //   { src: '/photos/2026-02/01.jpg', caption: 'something short' }
-  gallery: { title: 'February 14, in pictures', photos: [] },
+  gallery: {
+    title: 'February 14, in pictures',
+    photos: [
+      {
+        src: '/photos/2026-02/01-kwentuhan.webp',
+        caption: 'we ate, and we just talked',
+      },
+      {
+        src: '/photos/2026-02/02-rain-outside.webp',
+        caption: 'the rain starting outside',
+      },
+      {
+        src: '/photos/2026-02/03-the-lights.webp',
+        caption: 'you were so beautiful here',
+      },
+      {
+        src: '/photos/2026-02/04-before-going-home.webp',
+        caption: 'the last stop before home',
+      },
+    ],
+  },
 
   signoff: 'My first Valentine’s Day. I am glad it was you.',
 }
