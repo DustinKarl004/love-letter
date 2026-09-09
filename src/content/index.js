@@ -10,26 +10,10 @@
 //  To add an entry: create the file, import it, append it below.
 // ─────────────────────────────────────────────────────────────
 
-import memoryJan2026 from './memories/2026-01.js'
-import memoryFeb2026 from './memories/2026-02.js'
-import memoryMar2026 from './memories/2026-03.js'
-import memoryApr2026 from './memories/2026-04.js'
-import memorySep2026 from './memories/2026-09.js'
-
 import letterSep2026 from './letters/2026-09.js'
 
-// Monthly Memory is hidden for now — the monthly thing is the love
-// letter. Nothing is deleted: move any of these back into `memories`
-// below and that month reappears in the nav, the archive and its URL.
-const hiddenMemories = [
-  memoryJan2026,
-  memoryFeb2026,
-  memoryMar2026,
-  memoryApr2026,
-  memorySep2026,
-]
-
-// Chronological, oldest first.
+// Monthly Memory is gone. The collection stays wired up, so a memory
+// can be added again later, but nothing is registered.
 export const memories = []
 export const letters = [letterSep2026]
 
