@@ -44,6 +44,97 @@ function Leaf({ variant }) {
   )
 }
 
+// A sunflower: a ring of petals around a dark seeded centre. Drawn as
+// SVG so it scales cleanly and costs nothing to load.
+function Sunflower({ variant }) {
+  const petals = variant === 1 ? 14 : 11
+  const ry = variant === 1 ? 7.4 : 8.4
+  return (
+    <svg viewBox="0 0 40 40" aria-hidden="true">
+      {Array.from({ length: petals }, (_, i) => (
+        <ellipse
+          key={i}
+          cx="20"
+          cy="8.6"
+          rx="3"
+          ry={ry}
+          fill="currentColor"
+          transform={`rotate(${(360 / petals) * i} 20 20)`}
+        />
+      ))}
+      {/* a second, shorter ring so the flower reads as full */}
+      {Array.from({ length: petals }, (_, i) => (
+        <ellipse
+          key={`i${i}`}
+          cx="20"
+          cy="12.4"
+          rx="2.4"
+          ry="5.2"
+          fill="currentColor"
+          opacity="0.75"
+          transform={`rotate(${(360 / petals) * i + 360 / petals / 2} 20 20)`}
+        />
+      ))}
+      <circle cx="20" cy="20" r="6.4" fill="#4A2E12" />
+      <circle cx="20" cy="20" r="4.6" fill="#6B421B" />
+      <circle cx="18.4" cy="18.4" r="1.5" fill="rgba(255,255,255,.18)" />
+    </svg>
+  )
+}
+
+const SUNFLOWER_TINTS = [
+  '#F5C518',
+  '#E8A61C',
+  '#FFD75E',
+  '#D98E12',
+  '#F7CE3E',
+  '#C97F10',
+]
+
+function Sunflowers({ count }) {
+  const drops = useMemo(
+    () =>
+      Array.from({ length: count }, (_, i) => ({
+        id: i,
+        left: Math.random() * 100,
+        // A few big ones in front, plenty of small ones behind.
+        size: i % 6 === 0 ? 34 + Math.random() * 26 : 13 + Math.random() * 17,
+        duration: 15 + Math.random() * 20,
+        delay: -Math.random() * 34,
+        sway: 40 + Math.random() * 90,
+        spin: Math.random() > 0.5 ? 1 : -1,
+        variant: i % 2,
+        tint: SUNFLOWER_TINTS[i % SUNFLOWER_TINTS.length],
+        opacity: 0.45 + Math.random() * 0.5,
+      })),
+    [count]
+  )
+
+  return (
+    <div className="ambient" aria-hidden="true">
+      {drops.map((d) => (
+        <span
+          key={d.id}
+          className="sunflower"
+          style={{
+            left: `${d.left}%`,
+            width: `${d.size}px`,
+            height: `${d.size}px`,
+            color: d.tint,
+            opacity: d.opacity,
+            animationDuration: `${d.duration}s`,
+            animationDelay: `${d.delay}s`,
+            '--sway': `${d.sway}px`,
+            '--spin': `${d.spin * 400}deg`,
+          }}
+        >
+          <Sunflower variant={d.variant} />
+        </span>
+      ))}
+    </div>
+  )
+}
+
 const LEAF_TINTS = ['#C87941', '#A64B2A', '#D89B54', '#8C4A2F', '#E0A860', '#B5622F']
 
 // Petal shapes for February. Three petals and, one time in four, a
@@ -414,5 +505,6 @@ export default function Ambient({ kind = 'leaves', count = 26 }) {
   if (kind === 'petals') return <Petals count={Math.round(count * 1.3)} />
   if (kind === 'embers') return <Embers count={Math.round(count * 1.8)} />
   if (kind === 'clouds') return <Clouds count={Math.round(count * 1.05)} />
+  if (kind === 'sunflowers') return <Sunflowers count={Math.round(count * 1.4)} />
   return <Leaves count={count} />
 }

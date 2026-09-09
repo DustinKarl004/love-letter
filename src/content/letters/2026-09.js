@@ -49,7 +49,7 @@ export default {
     greeting: 'Jaz,',
 
     paragraphs: [
-      `I am not a brave person by default. I overthink things, I wait longer than I should, and I talk myself out of what I actually want to do. So when something good turns up in my life, I have learned not to hand myself the credit for it.`,
+      `I am not a brave person. I overthink things, I wait longer than I should, and I talk myself out of what I actually want to do. So when something good turns up in my life, I have learned not to hand myself the credit for it.`,
 
       `Thank You, Lord, for letting me go out with her. I do not take it lightly, and I know it is not something I managed on my own strength.`,
 
@@ -61,9 +61,9 @@ export default {
     // Set apart from the prose, so it reads as spoken rather than written.
     prayer: {
       lines: [
-        `So Lord, I am asking now instead of waiting for Friday to come. Give me the same strength You gave me the first time, because I have not gotten any braver on my own since then.`,
+        `Lord God, I am asking now instead of waiting for Friday to come. Give me the same strength You gave me the first time, because I have not gotten any braver on my own since then.`,
 
-        `Let me be present with her instead of stuck inside my own head. Let me listen more than I talk. Keep her safe on the way there and on the way home. And let the day be good — it does not have to be perfect, it just has to be good.`,
+        `Let me be present with her instead of stuck inside my own head. Let me listen more than I talk. Keep both of us safe on the way there and on the way home. And let the day be good — it does not have to be perfect, it just has to be good.`,
 
         `And whatever comes after Friday, help me to keep trusting that You know the timing far better than I do.`,
       ],

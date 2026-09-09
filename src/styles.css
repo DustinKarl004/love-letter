@@ -108,6 +108,36 @@ video {
   }
 }
 
+/* Sunflowers turn as they fall, and are heavy enough to fall slowly. */
+.sunflower {
+  position: absolute;
+  top: -10%;
+  display: block;
+  animation-name: sunflower-fall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  will-change: transform;
+}
+
+.sunflower svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  filter: drop-shadow(0 3px 7px rgba(0, 0, 0, 0.4));
+}
+
+@keyframes sunflower-fall {
+  0% {
+    transform: translate3d(0, -12vh, 0) rotate(0deg);
+  }
+  50% {
+    transform: translate3d(var(--sway), 55vh, 0) rotate(calc(var(--spin) * 0.5));
+  }
+  100% {
+    transform: translate3d(0, 118vh, 0) rotate(var(--spin));
+  }
+}
+
 /* Petals drift wider and flutter as they turn over, so they read as
    lighter than the leaves. */
 .petal {
@@ -1671,4 +1701,176 @@ video {
     opacity: 1;
     transform: none;
   }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   THE INDEX  —  the page a bare link opens
+   Every letter, listed. Sunflowers behind it.
+   ═══════════════════════════════════════════════════════════ */
+
+.index-scene {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
+  padding: clamp(2rem, 8vh, 5rem) 1.25rem;
+  background:
+    radial-gradient(ellipse 90% 60% at 50% 0%, var(--bg-glow) 0%, transparent 70%),
+    radial-gradient(
+      ellipse 70% 50% at 50% 100%,
+      color-mix(in srgb, var(--accent-deep) 24%, transparent) 0%,
+      transparent 70%
+    ),
+    var(--bg);
+  overflow-x: hidden;
+}
+
+.index {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 32rem;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.5rem, 4vh, 2.25rem);
+}
+
+.index-head {
+  text-align: center;
+  animation: rise-in 1s ease both 0.1s;
+}
+
+.index-eyebrow {
+  margin: 0;
+  font-family: var(--sans);
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--paper) 52%, transparent);
+}
+
+.index-title {
+  margin: 0.7rem 0 0;
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: clamp(2.3rem, 11vw, 3.4rem);
+  line-height: 1;
+  color: var(--paper);
+}
+
+.index-subtitle {
+  margin: 0.5rem 0 0;
+  font-family: var(--hand);
+  font-size: clamp(1.2rem, 4.5vw, 1.5rem);
+  color: color-mix(in srgb, var(--accent) 88%, var(--paper));
+}
+
+.index-rule {
+  display: block;
+  width: 3rem;
+  height: 1px;
+  margin: 1.5rem auto 0;
+  background: color-mix(in srgb, var(--accent) 65%, transparent);
+}
+
+.index-group {
+  animation: rise-in 1s ease both 0.3s;
+}
+
+.index-group-label {
+  margin: 0 0 0.85rem;
+  font-family: var(--sans);
+  font-size: 0.58rem;
+  font-weight: 500;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  text-align: center;
+  color: color-mix(in srgb, var(--paper) 45%, transparent);
+}
+
+.index-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.index-list button {
+  appearance: none;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas:
+    'month arrow'
+    'blurb arrow';
+  align-items: center;
+  gap: 0.25rem 1rem;
+  min-height: 60px;
+  padding: 1.1rem 1.35rem;
+  border-radius: 14px;
+  border: 1px solid color-mix(in srgb, var(--accent) 28%, transparent);
+  background: color-mix(in srgb, var(--paper) 6%, transparent);
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+}
+
+@media (hover: hover) {
+  .index-list button:hover {
+    background: color-mix(in srgb, var(--paper) 13%, transparent);
+    border-color: color-mix(in srgb, var(--accent) 62%, transparent);
+    transform: translateY(-2px);
+  }
+
+  .index-list button:hover .index-arrow {
+    transform: translateX(4px);
+  }
+}
+
+.index-month {
+  grid-area: month;
+  display: flex;
+  align-items: baseline;
+  gap: 0.5em;
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: clamp(1.3rem, 4.5vw, 1.55rem);
+  color: var(--paper);
+}
+
+.index-year {
+  font-weight: 400;
+  font-size: 0.72em;
+  color: color-mix(in srgb, var(--paper) 52%, transparent);
+}
+
+.index-blurb {
+  grid-area: blurb;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(0.9rem, 2.6vw, 1rem);
+  line-height: 1.5;
+  color: color-mix(in srgb, var(--paper) 62%, transparent);
+}
+
+.index-arrow {
+  grid-area: arrow;
+  font-size: 1.15rem;
+  color: var(--accent);
+  transition: transform 0.3s ease;
+}
+
+.index-hint {
+  margin: 0;
+  text-align: center;
+  font-family: var(--sans);
+  font-size: 0.62rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--paper) 40%, transparent);
+  animation: pulse-hint 2.8s ease-in-out infinite 1.2s;
 }

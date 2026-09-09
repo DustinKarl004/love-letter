@@ -18,6 +18,7 @@ import Gallery from './components/Gallery'
 import Archive from './components/Archive'
 import EmptyMonth from './components/EmptyMonth'
 import Nav from './components/Nav'
+import Index from './components/Index'
 
 // #/memory/2026-01 · #/letter/2026-09 · bare #/2026-01 still works.
 function pathFromHash() {
@@ -28,7 +29,9 @@ export default function App() {
   const [path, setPath] = useState(() => pathFromHash())
   const [opened, setOpened] = useState(false)
 
-  const entry = resolve(path) || defaultEntry
+  // A bare link — or anything unrecognised — opens the index.
+  const resolved = path ? resolve(path) : null
+  const entry = resolved || defaultEntry
   const { meta, theme, letter, reasons, gallery, signoff, empty } = entry
   // Each month's own little glyph, used by the placeholder states.
   const mark = theme.mark || '✦'
@@ -50,19 +53,26 @@ export default function App() {
   // Push this entry's palette into CSS custom properties so every
   // component picks it up without prop-drilling colors.
   useEffect(() => {
+    // The index owns the palette and the title when it is showing —
+    // its effects run first as a child, so without this guard these
+    // would overwrite them.
+    if (!resolved) return
     const root = document.documentElement
     Object.entries(theme.colors).forEach(([key, value]) => {
       const prop = '--' + key.replace(/[A-Z]/g, (c) => '-' + c.toLowerCase())
       root.style.setProperty(prop, value)
     })
-  }, [theme])
+  }, [theme, resolved])
 
   useEffect(() => {
+    if (!resolved) return
     const kind = entry.kind === 'letter' ? 'Love Letter' : 'Monthly Memory'
     document.title = `${kind} — ${meta.monthLabel} ${meta.yearLabel}`
-  }, [entry, meta])
+  }, [entry, meta, resolved])
 
   const key = route(entry)
+
+  if (!resolved) return <Index onSelect={go} />
 
   return (
     <div className={`app theme-${theme.name} ${opened ? 'is-opened' : ''}`}>
