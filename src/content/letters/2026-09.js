@@ -81,7 +81,7 @@ export default {
       amen: `In Jesus' name, amen.`,
     },
 
-    closing: 'See you on Friday,',
+    closing: 'Thank you for your time,',
     postscript: null,
   },
 
