@@ -81,7 +81,7 @@ export default {
       amen: `In Jesus' name, amen.`,
     },
 
-    closing: 'Thank you for your time,',
+    closing: 'Grateful for you, and for Friday,',
     postscript: null,
   },
 
