@@ -76,17 +76,17 @@ export default {
 
         `Look after her, Lord. She is carrying more than she lets on — carry it with her. Keep both of us safe on the way there and on the way home. Give her rest when she is tired, and people around her who are good to her. And when she doubts herself, let her know how she is seen.`,
 
-        `As for Friday — give me the strength to be good to her, and to listen more than I talk. Send us good weather, Lord, a clear sky and a kind afternoon, so nothing gets in the way of the time we have. Let the day be good; it does not have to be perfect. And whatever comes after it, help me to keep trusting that You know the timing far better than I do.`,
+        `As for Friday — give me the strength to be good to her, and to listen more than I talk. Send us good weather, Lord — a clear sky from morning until night, the whole day kind to us, so nothing gets in the way of the time we have. Let the day be good; it does not have to be perfect. And whatever comes after it, help me to keep trusting that You know the timing far better than I do.`,
       ],
       amen: `In Jesus' name, amen.`,
     },
 
-    closing: 'See you Friday,',
+    closing: 'See you on Friday,',
     postscript: null,
   },
 
   reasons: null,
   gallery: { photos: [] },
 
-  signoff: 'Friday, September 11. I have already cleared the day.',
+  signoff: 'September 11 — date with Jaz.',
 }
