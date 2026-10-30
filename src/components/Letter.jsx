@@ -88,6 +88,22 @@ export default function Letter({ letter, meta }) {
       <p className="letter-closing">{letter.closing}</p>
       <p className="letter-signature">{meta.from}</p>
 
+      {/* Optional. A little row of stickers under the signature. */}
+      {letter.stickers?.items?.length > 0 && (
+        <div className="letter-stickers">
+          <ul className="letter-stickers-row">
+            {letter.stickers.items.map((sticker) => (
+              <li className="letter-sticker" key={sticker.src}>
+                <img src={sticker.src} alt={sticker.label} loading="lazy" />
+              </li>
+            ))}
+          </ul>
+          {letter.stickers.caption && (
+            <p className="letter-stickers-caption">{letter.stickers.caption}</p>
+          )}
+        </div>
+      )}
+
       {letter.postscript && (
         <p className="letter-postscript">{letter.postscript}</p>
       )}

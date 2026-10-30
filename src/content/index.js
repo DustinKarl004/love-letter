@@ -11,11 +11,12 @@
 // ─────────────────────────────────────────────────────────────
 
 import letterSep2026 from './letters/2026-09.js'
+import letterOct2026 from './letters/2026-10.js'
 
 // Monthly Memory is gone. The collection stays wired up, so a memory
 // can be added again later, but nothing is registered.
 export const memories = []
-export const letters = [letterSep2026]
+export const letters = [letterSep2026, letterOct2026]
 
 export const KIND_LABEL = {
   memory: 'Monthly Memory',
@@ -48,7 +49,7 @@ export function resolve(path) {
 
 // Which page a bare link opens. Deliberately not "the newest" — point
 // it at whichever entry is most worth landing on.
-export const DEFAULT_ROUTE = 'letter/2026-09'
+export const DEFAULT_ROUTE = 'letter/2026-10'
 
 export const defaultEntry = resolve(DEFAULT_ROUTE) || all[0]
 

@@ -1182,6 +1182,67 @@ video {
   color: var(--accent-deep);
 }
 
+.letter-stickers {
+  margin: 2rem 0 0;
+}
+
+.letter-stickers-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.letter-sticker {
+  width: clamp(3rem, 11vw, 3.75rem);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  overflow: hidden;
+  background: var(--paper-edge);
+  border: 2px solid color-mix(in srgb, var(--accent) 55%, transparent);
+  box-shadow: 0 2px 6px color-mix(in srgb, var(--ink) 18%, transparent);
+  transform: rotate(-6deg);
+  animation: sticker-bob 3.2s ease-in-out infinite;
+}
+
+.letter-sticker:nth-child(3n + 2) {
+  transform: rotate(4deg);
+  animation-delay: -1.1s;
+}
+
+.letter-sticker:nth-child(3n) {
+  transform: rotate(-2deg);
+  animation-delay: -2.2s;
+}
+
+.letter-sticker img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+@keyframes sticker-bob {
+  50% {
+    translate: 0 -3px;
+  }
+}
+
+.letter-stickers-caption {
+  margin: 0.7rem 0 0;
+  font-family: var(--hand);
+  font-size: clamp(1.1rem, 3.4vw, 1.3rem);
+  color: var(--ink-soft);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .letter-sticker {
+    animation: none;
+  }
+}
+
 .letter-postscript {
   margin: 2.5rem 0 0;
   padding-top: 1.25rem;
